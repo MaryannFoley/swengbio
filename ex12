@@ -82,10 +82,53 @@ minus(p(X),Z) :- minus(X,s(Z)).
 
 %Exercise 4
 
+add2(-p(0),Y,Z) :- add2(s(0),Y,Z).
+add2(-s(0),Y,Z) :- add2(p(0),Y,Z).
+add2(X,-p(0),Z) :- add2(X,s(0),Z).
+add2(X,-s(0),Z) :- add2(X,p(0),Z).
+add2(-p(X),Y,Z) :- add2(s(-X),Y,Z).
+add2(-s(X),Y,Z) :- add2(p(-X),Y,Z).
+add2(X,-p(Y),Z) :- add2(X,s(-Y),Z).
+add2(X,-s(Y),Z) :- add2(X,p(-Y),Z).
+
+add2(p(X), Y, 0) :- add2(X,Y,s(0)).
+add2(X, p(Y), 0) :- add2(X,Y,s(0)).
+add2(s(X), Y, 0) :- add2(X,Y,p(0)).
+add2(X, s(Y), 0) :- add2(X,Y,p(0)).
+
+add2(s(X), Y, p(Z)) :- add2(X,Y,p(p(Z))).
+add2(X, s(Y), p(Z)) :- add2(X,Y,p(p(Z))).
+
+add2(p(X), Y, s(Z)) :- add2(X,Y,s(s(Z))).
+add2(X, p(Y), s(Z)) :- add2(X,Y,s(s(Z))).
+
+
+add2(p(X), Y, p(Z)) :- add2(X,Y,Z).
+add2(X, p(Y), p(Z)) :- add2(X,Y,Z).
+
+add2(s(X), Y, s(Z)) :- add2(X,Y,Z).
+add2(X, s(Y), s(Z)) :- add2(X,Y,Z).
 
 
 
+add2(0+X, Y, Z) :- add2(X,Y,Z).
+add2(Y, 0+X, Z) :- add2(Y,X,Z).
+add2(X+0, Y, Z) :- add2(X,Y,Z).
+add2(Y, X+0, Z) :- add2(Y,X,Z).
+
+add2(s(X)+Y, Z, p(A)) :- add2(X+Y,Z,p(p(A))).
+add2(Z, s(X)+Y, p(A)) :- add2(Z,X+Y,p(p(A))).
+add2(p(X)+Y, Z, s(A)) :- add2(X+Y,Z,s(s(A))).
+add2(Z, p(X)+Y, s(A)) :- add2(Z,X+Y,s(s(A))).
 
 
+add2(s(X)+Y, Z, s(A)) :- add2(X+Y,Z,A).
+add2(Z, s(X)+Y, s(A)) :- add2(Z,X+Y,A).
+
+add2(p(X)+Y, Z, p(A)) :- add2(X+Y,Z,A).
+add2(Z, p(X)+Y, p(A)) :- add2(Z,X+Y,A).
+
+
+add2(0,X,X).
 
 
