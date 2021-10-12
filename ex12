@@ -132,3 +132,11 @@ add2(Z, p(X)+Y, p(A)) :- add2(Z,X+Y,A).
 add2(0,X,X).
 
 
+
+%Exercise 5
+
+subtract(0,X,X).
+subtract(X,-Y,Z) :- add2(X,Y,Z).
+subtract(X,Y,Z) :- add2(X,-Y,Z).
+
+
